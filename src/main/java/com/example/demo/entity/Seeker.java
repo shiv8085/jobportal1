@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import java.util.UUID;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,126 +11,28 @@ public class Seeker {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private UUID uuid;
-	@Column(length = 50)
-	private String fname;
-	@Column( length = 50)
-	private String lname;
-	@Column(length = 55)
-	private String email;
-	@Column(length = 12)
-	private Integer mobileno;
-	@Column(length = 2)
-	private String gender;
-	@Column(length = 50)
-	private String title;
-	@Column(length = 255)
-	private String address;
-	private String education;
-	@Column(length = 50)
-	private String degree;
-	@Column(length = 55)
-	private String institute;
-	private String year;
-	@Column(length = 12)
-	private Integer marks;
-	@Column(length = 250)
-	private String skill;
-	@Column(length = 50)
+	private Integer id;
+	@Column(nullable = false, name = "NAME" )
 	private String name;
-	private Integer ratepercent;
-	private Integer experience;
-	@Column(length = 50)
-	private String comname;
-	private String startdate;
-	private String enddate;
-	@Column(length = 250)
-	private String jobdescription;
-	private String sociallink;
-	private String resume;
-	public UUID getUuid() {
-		return uuid;
+	private String profile;
+	private String skills;
+	private String email;
+	private Integer phone;
+	private String date_of_birth;
+	private String address;
+	private String gender;
+	private String description;
+	private String created_at;
+	private String education_title;
+	private String education_degree;
+	private String education_year;
+	private String role;
+	private String research;
+	public Integer getId() {
+		return id;
 	}
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-	public String getFname() {
-		return fname;
-	}
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-	public String getLname() {
-		return lname;
-	}
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public Integer getMobileno() {
-		return mobileno;
-	}
-	public void setMobileno(Integer mobileno) {
-		this.mobileno = mobileno;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getEducation() {
-		return education;
-	}
-	public void setEducation(String education) {
-		this.education = education;
-	}
-	public String getDegree() {
-		return degree;
-	}
-	public void setDegree(String degree) {
-		this.degree = degree;
-	}
-	public String getInstitute() {
-		return institute;
-	}
-	public void setInstitute(String institute) {
-		this.institute = institute;
-	}
-	public String getYear() {
-		return year;
-	}
-	public void setYear(String year) {
-		this.year = year;
-	}
-	public Integer getMarks() {
-		return marks;
-	}
-	public void setMarks(Integer marks) {
-		this.marks = marks;
-	}
-	public String getSkill() {
-		return skill;
-	}
-	public void setSkill(String skill) {
-		this.skill = skill;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -140,54 +40,93 @@ public class Seeker {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getRatepercent() {
-		return ratepercent;
+	public String getProfile() {
+		return profile;
 	}
-	public void setRatepercent(Integer ratepercent) {
-		this.ratepercent = ratepercent;
-	}
-	public Integer getExperience() {
-		return experience;
-	}
-	public void setExperience(Integer experience) {
-		this.experience = experience;
-	}
-	public String getComname() {
-		return comname;
-	}
-	public void setComname(String comname) {
-		this.comname = comname;
-	}
-	public String getStartdate() {
-		return startdate;
-	}
-	public void setStartdate(String startdate) {
-		this.startdate = startdate;
-	}
-	public String getEnddate() {
-		return enddate;
-	}
-	public void setEnddate(String enddate) {
-		this.enddate = enddate;
-	}
-	public String getJobdescription() {
-		return jobdescription;
-	}
-	public void setJobdescription(String jobdescription) {
-		this.jobdescription = jobdescription;
-	}
-	public String getSociallink() {
-		return sociallink;
-	}
-	public void setSociallink(String sociallink) {
-		this.sociallink = sociallink;
-	}
-	public String getResume() {
-		return resume;
-	}
-	public void setResume(String resume) {
-		this.resume = resume;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 	
-   
+	
+	public String getSkills() {
+		return skills;
+	}
+	public void setSkills(String skills) {
+		this.skills = skills;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Integer getPhone() {
+		return phone;
+	}
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
+	public String getDate_of_birth() {
+		return date_of_birth;
+	}
+	public void setDate_of_birth(String date_of_birth) {
+		this.date_of_birth = date_of_birth;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+	public String getEducation_title() {
+		return education_title;
+	}
+	public void setEducation_title(String education_title) {
+		this.education_title = education_title;
+	}
+	public String getEducation_degree() {
+		return education_degree;
+	}
+	public void setEducation_degree(String education_degree) {
+		this.education_degree = education_degree;
+	}
+	public String getEducation_year() {
+		return education_year;
+	}
+	public void setEducation_year(String education_year) {
+		this.education_year = education_year;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getResearch() {
+		return research;
+	}
+	public void setResearch(String research) {
+		this.research = research;
+	}
+	
+	
+	
 }

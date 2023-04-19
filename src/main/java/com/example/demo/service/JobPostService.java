@@ -19,6 +19,6 @@ public interface JobPostService {
 	public List<JobPost > showJobPost ();
 	
 	//get by id Seeker
-	public Optional<JobPost > JobPostGetById(UUID uuid) throws Exception;
+	public Optional<JobPost > JobPostGetById(UUID uuid);
 
 }

@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.JobPostDao;
 import com.example.demo.entity.JobPost;
+import com.example.demo.entity.Seeker;
 import com.example.demo.service.JobPostService;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class JobPostServiceImpl implements JobPostService {
@@ -25,23 +28,42 @@ public class JobPostServiceImpl implements JobPostService {
 			throw new NullPointerException();
 		}
 		JobPost jobPost1=jobPostServiceDao.save(jobPost);
-		return jobPost;
+		return jobPost1;
 	}
 
 	@Override
 	public String jobPostDeleteById(UUID uuid) {
+		Optional<JobPost> jobPost=jobPostServiceDao.findById(uuid);
+		if(jobPost.isEmpty())
+		{
+			throw new EntityNotFoundException();
+		}
 		jobPostServiceDao.deleteById(uuid);
 		return "Successfully Deleted";
+		
 	}
 
 	@Override
 	public List<JobPost> showJobPost() {
-		return (List<JobPost>) jobPostServiceDao.findAll();
+	    List<JobPost> postJobList=jobPostServiceDao.findAll();
+	    if(postJobList.isEmpty())
+	    {
+	    	throw new EntityNotFoundException();
+	    }
+	     return jobPostServiceDao.findAll();
+	    
 	}
 
 	@Override
 	public Optional<JobPost> JobPostGetById(UUID uuid) {
-		return jobPostServiceDao.findById(uuid);
+		Optional<JobPost> jobPost=jobPostServiceDao.findById(uuid);
+		if(jobPost.isEmpty())
+		{
+			throw new EntityNotFoundException();
+		}
+	     return jobPost;
 	}
-
+	
 }
+
+

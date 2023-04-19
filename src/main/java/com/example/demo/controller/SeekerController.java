@@ -16,42 +16,71 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.example.custom.exception.BusinessException;
+import com.example.custom.exception.ControllerException;
 import com.example.demo.entity.Seeker;
 import com.example.demo.service.SeekerService;
 
 @RestController
-@RequestMapping("/seeker")
+@RequestMapping("seeker")
 public class SeekerController {
-	
+
 	@Autowired
 	SeekerService seekerService;
-		
-	@GetMapping("/getbyid/{uuid}")
-	public  ResponseEntity<?> getSeeker(@PathVariable UUID uuid) 
-	{
-	  Optional<Seeker> retrievedSeeker=seekerService.seekerGetById(uuid);
-	  return new ResponseEntity<>(retrievedSeeker,HttpStatus.OK);
-	}
-	
+
 	@PostMapping("/add")
-	public  ResponseEntity<Seeker> addSeeker(@RequestBody Seeker seeker) 
-	{
-		Seeker seekerSaved= seekerService.seekerAdd(seeker);
-		return new ResponseEntity<Seeker>(seekerSaved,HttpStatus.CREATED);
+	public ResponseEntity addSeeker(@RequestBody Seeker seeker) {
+		try {
+			Seeker seekerSaved = seekerService.seekerAdd(seeker);
+			return new ResponseEntity<Seeker>(seekerSaved, HttpStatus.CREATED);
+		} catch (BusinessException businessException) {
+			return new ResponseEntity(businessException.getMessage(), HttpStatus.ALREADY_REPORTED);
+			
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 	}
-	
-	@DeleteMapping("/deleteseeker/{uuid}")
-	public ResponseEntity<String> deleteSeeker(@PathVariable UUID uuid)
-	{
-		String msg=seekerService.seekerDeleteById(uuid);
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
+
+	@GetMapping("/getbyid/{id}")
+	public ResponseEntity<?> getSeeker(@PathVariable Integer id) {
+		try {
+			Seeker retrievedSeeker = seekerService.seekerGetById(id);
+			return new ResponseEntity<>(retrievedSeeker, HttpStatus.OK);
+		} catch (BusinessException e) {
+			ControllerException ce = new ControllerException(e.getErrorCode(), e.getErrorMessage());
+			return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			throw new ControllerException("500", "Something went wrong" + e.getMessage());
+		}
 	}
-	
-	
-	@GetMapping("/show")
-	public  List<Seeker> showSeeker()
-	{
-		return seekerService.showSeeker();
+
+	@GetMapping("/list")
+	public ResponseEntity<List<Seeker>> showSeeker() {
+		try {
+			List<Seeker> list = seekerService.showSeeker();
+			return new ResponseEntity<List<Seeker>>(list, HttpStatus.OK);
+		} catch (BusinessException e) {
+			ControllerException ce = new ControllerException(e.getErrorCode(), e.getErrorMessage());
+			return new ResponseEntity<List<Seeker>>((List<Seeker>) ce, HttpStatus.EXPECTATION_FAILED);
+		} catch (Exception e) {
+			throw new ControllerException("500", "Somrthing went wrong" + e.getMessage());
+		}
+
+	}
+
+	@DeleteMapping("/delbyid/{id}")
+	public ResponseEntity<String> deleteSeeker(@PathVariable Integer id) {
+		try {
+			String msg = seekerService.seekerDeleteById(id);
+			return new ResponseEntity<String>(msg, HttpStatus.OK);
+		} catch (BusinessException e) {
+			ControllerException ce = new ControllerException(e.getErrorCode(), e.getErrorMessage());
+			return new ResponseEntity<String>(HttpStatus.EXPECTATION_FAILED);
+		} catch (Exception e) {
+			ControllerException ce = new ControllerException("500", "Something went wrong" + e.getMessage());
+			return new ResponseEntity<String>(HttpStatus.PRECONDITION_FAILED);
+		}
+
 	}
 
 }
