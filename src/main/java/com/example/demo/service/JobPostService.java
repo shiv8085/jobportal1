@@ -13,12 +13,12 @@ public interface JobPostService {
 	public JobPost jobPostAdd(JobPost jobpost);
 	
 	//Delete JobPost 
-	public String jobPostDeleteById(UUID uuid);
+	public String jobPostDeleteById(Integer id);
 	
 	//get Seeker
 	public List<JobPost > showJobPost ();
 	
 	//get by id Seeker
-	public Optional<JobPost > JobPostGetById(UUID uuid);
+	public JobPost JobPostGetById(Integer id);
 
 }

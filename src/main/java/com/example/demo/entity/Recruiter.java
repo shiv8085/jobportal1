@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.validation.constraints.Max;
@@ -16,8 +17,8 @@ import jakarta.persistence.Id;
 public class Recruiter {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private UUID uuid;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private Integer id;
 	@Column(length = 50)
 	private String fName;
 	@Column( length = 50)
@@ -27,13 +28,20 @@ public class Recruiter {
 	@Column(length = 12)
 	private Integer mobileNo;
 	@Column(length = 100)
-	private String colComName;
+	private String collegeCompName;
 	private String address;
-	public UUID getUuid() {
-		return uuid;
+	private String collegeComplogo;
+	private LocalDate createdAt;
+	private String profileUrl;
+	
+	
+    
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getfName() {
 		return fName;
@@ -59,13 +67,11 @@ public class Recruiter {
 	public void setMobileNo(Integer mobileNo) {
 		this.mobileNo = mobileNo;
 	}
-	
-	
-	public String getColComName() {
-		return colComName;
+	public String getCollegeCompName() {
+		return collegeCompName;
 	}
-	public void setColComName(String colComName) {
-		this.colComName = colComName;
+	public void setCollegeCompName(String collegeCompName) {
+		this.collegeCompName = collegeCompName;
 	}
 	public String getAddress() {
 		return address;
@@ -73,6 +79,25 @@ public class Recruiter {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getCollegeComplogo() {
+		return collegeComplogo;
+	}
+	public void setCollegeComplogo(String collegeComplogo) {
+		this.collegeComplogo = collegeComplogo;
+	}
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+	public String getProfileUrl() {
+		return profileUrl;
+	}
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
+	}
 	
-
+	
+	
 }

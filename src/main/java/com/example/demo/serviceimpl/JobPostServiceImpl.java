@@ -1,18 +1,20 @@
 package com.example.demo.serviceimpl;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.UUID;
 
+import org.hibernate.type.descriptor.java.LocalDateJavaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.custom.exception.BusinessException;
 import com.example.demo.dao.JobPostDao;
 import com.example.demo.entity.JobPost;
-import com.example.demo.entity.Seeker;
 import com.example.demo.service.JobPostService;
-
 import jakarta.persistence.EntityNotFoundException;
+
 
 @Service
 public class JobPostServiceImpl implements JobPostService {
@@ -23,45 +25,51 @@ public class JobPostServiceImpl implements JobPostService {
 	
 	@Override
 	public JobPost jobPostAdd(JobPost jobPost) {
+		try {
+			LocalDate localDate= LocalDate.now();
 		if(jobPost.getTitle().isEmpty())
 		{
-			throw new NullPointerException();
+			throw new BusinessException("pls enter title");
 		}
-		JobPost jobPost1=jobPostServiceDao.save(jobPost);
-		return jobPost1;
+		jobPost.setCreatedAt(localDate);
+		return jobPostServiceDao.save(jobPost);
+		}catch(IllegalArgumentException e)
+		{
+			throw new BusinessException("fill all the field is mendatory");
+		}
 	}
 
 	@Override
-	public String jobPostDeleteById(UUID uuid) {
-		Optional<JobPost> jobPost=jobPostServiceDao.findById(uuid);
-		if(jobPost.isEmpty())
-		{
-			throw new EntityNotFoundException();
-		}
-		jobPostServiceDao.deleteById(uuid);
+	public String jobPostDeleteById(Integer id) {
+		try {
+		jobPostServiceDao.deleteById(id);
 		return "Successfully Deleted";
+		}
+		catch (EntityNotFoundException e) {
+		     throw new BusinessException("No Object Found For Deletion");
+		}
 		
 	}
 
 	@Override
 	public List<JobPost> showJobPost() {
-	    List<JobPost> postJobList=jobPostServiceDao.findAll();
-	    if(postJobList.isEmpty())
-	    {
-	    	throw new EntityNotFoundException();
+	    try {
+	    	List<JobPost> postJobList=jobPostServiceDao.findAll();
+	    return postJobList;
 	    }
-	     return jobPostServiceDao.findAll();
-	    
+	    catch (NoSuchElementException  e) {
+	      throw new BusinessException("No Job Found");
+		}
 	}
 
 	@Override
-	public Optional<JobPost> JobPostGetById(UUID uuid) {
-		Optional<JobPost> jobPost=jobPostServiceDao.findById(uuid);
-		if(jobPost.isEmpty())
-		{
-			throw new EntityNotFoundException();
+	public JobPost JobPostGetById(Integer id) {
+		try {
+		Optional<JobPost> jobPost=jobPostServiceDao.findById(id);
+	     return jobPost.get();
+		}catch (EntityNotFoundException e) {
+			throw new BusinessException("No Job Found");
 		}
-	     return jobPost;
 	}
 	
 }

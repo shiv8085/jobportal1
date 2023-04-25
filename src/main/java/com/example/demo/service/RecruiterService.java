@@ -10,6 +10,6 @@ public interface RecruiterService {
 	public Recruiter addRecruiter(Recruiter recruiter);
 	
 	//Delete Recruiter
-	public String deleteRecruiter(UUID uuid);
+	public String deleteRecruiter(Integer id);
 
 }

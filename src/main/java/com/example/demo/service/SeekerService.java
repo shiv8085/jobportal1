@@ -8,16 +8,25 @@ import com.example.demo.entity.Seeker;
 public interface SeekerService {
 	
 	    //add Seeker
-		public Seeker seekerAdd(Seeker service) throws Exception;
+		public Seeker seekerAdd(Seeker service) ;
 		
-		//Delete Seeker
-		public String seekerDeleteById(Integer id);
+//		//Delete Seeker
+//		public String seekerDeleteById(Integer id);
+		
+		
+		
 		
 		//get Seeker
 		public List<Seeker> showSeeker();
 		
+		
+		
 		//get by id Seeker
 		public Seeker seekerGetById(Integer id);
+		
+		
+		//email
+		public Seeker getByEmail(String email);
 
 		
 		

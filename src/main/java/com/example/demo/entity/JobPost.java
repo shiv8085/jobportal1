@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,39 +14,38 @@ public class JobPost {
 	
 	@Id
 	@Column(length=16)
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private UUID uuid;
-	@Column(length=50)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private Integer id;
+	@Column(length=50, nullable = false)
 	private String title;
-	@Column(length=50)
+	@Column(length=50, nullable = false)
 	private String category;
-	@Column(length=50)
+	@Column(length=50, nullable = false)
 	private String companyName;
-	@Column(length=50)
 	private String companyLogo;
-	@Column(length=12)
+	@Column(length=12, nullable = false)
 	private Integer noOfVacancies;
-	@Column(length=255)
+	@Column(length=255, nullable = false)
 	private String address;
-	@Column(length=50)
+	@Column(length=50, nullable = false)
 	private String jobType;
     private Integer offeredSalary;
-	@Column(length=500)
+	@Column(length=500, nullable = false)
 	private String requireKnowledgeSkills;
-	@Column(length=100)
-	private String education_qualification;
+	@Column(length=100, nullable = false)
+	private String educationQualification;
 	private String status;
-	@Column(length=250)
+	@Column(length=250, nullable = false)
 	private String description;
-	@Column(length=12)
+	@Column(length=12, nullable = false)
 	private Integer contactNumber;
 	private String emailAddress;
-	public UUID getUuid() {
-		return uuid;
-	}
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
+	@Column(length=250, nullable = false )
+	private Integer createdByRecruiterId;
+	private LocalDate createdAt;
+	
+	
+
 	public String getTitle() {
 		return title;
 	}
@@ -100,12 +100,7 @@ public class JobPost {
 	public void setRequireKnowledgeSkills(String requireKnowledgeSkills) {
 		this.requireKnowledgeSkills = requireKnowledgeSkills;
 	}
-	public String getEducation_qualification() {
-		return education_qualification;
-	}
-	public void setEducation_qualification(String education_qualification) {
-		this.education_qualification = education_qualification;
-	}
+	
 	public String getStatus() {
 		return status;
 	}
@@ -130,6 +125,33 @@ public class JobPost {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+	public String getEducationQualification() {
+		return educationQualification;
+	}
+	public void setEducationQualification(String educationQualification) {
+		this.educationQualification = educationQualification;
+	}
+	public Integer getCreatedByRecruiterId() {
+		return createdByRecruiterId;
+	}
+	public void setCreatedByRecruiterId(Integer createdByRecruiterId) {
+		this.createdByRecruiterId = createdByRecruiterId;
+	}
+
+	
+	
 	
 	
 	

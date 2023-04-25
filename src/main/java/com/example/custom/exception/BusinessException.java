@@ -1,8 +1,8 @@
 package com.example.custom.exception;
 
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@Component
+@RestControllerAdvice
 public class BusinessException extends RuntimeException{	
 	/**
 	 * 
@@ -18,5 +18,17 @@ public class BusinessException extends RuntimeException{
 	public BusinessException()
 	{
 		super();
+	}
+
+	
+	
+	
+	
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 }

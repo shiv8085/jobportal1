@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,24 +13,49 @@ import jakarta.persistence.Id;
 public class Seeker {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	@Column(nullable = false, name = "NAME" )
 	private String name;
+	@Column(nullable = false)
 	private String profile;
+	@Column(nullable = false)
 	private String skills;
+	@Column(nullable = false)
 	private String email;
+	@Column(nullable = false)
 	private Integer phone;
-	private String date_of_birth;
+	@Column(nullable = false)
+	private String dateOfBirth;
+	@Column(nullable = false)
 	private String address;
+	@Column(nullable = false)
 	private String gender;
+	@Column(nullable = false)
 	private String description;
-	private String created_at;
-	private String education_title;
-	private String education_degree;
-	private String education_year;
+	@Column(nullable = false)
+	private LocalDate createdAt;
+	@Column(nullable = false)
+	private String educationTitle;
+	@Column(nullable = false)
+	private String educationDegree;
+	@Column(nullable = false)
+	private String educationYear;
+	@Column(nullable = false)
 	private String role;
+	@Column(nullable = false)
 	private String research;
+	@Column(nullable = false)
+	private String password;
+	@Column(nullable = false)
+	private String resumeUrl;
+	@Column(nullable = false)
+	private String profileUrl;
+	
+	
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -46,8 +74,6 @@ public class Seeker {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	
-	
 	public String getSkills() {
 		return skills;
 	}
@@ -66,11 +92,11 @@ public class Seeker {
 	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
-	public String getDate_of_birth() {
-		return date_of_birth;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
-	public void setDate_of_birth(String date_of_birth) {
-		this.date_of_birth = date_of_birth;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 	public String getAddress() {
 		return address;
@@ -90,29 +116,29 @@ public class Seeker {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public LocalDate getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getEducation_title() {
-		return education_title;
+	public String getEducationTitle() {
+		return educationTitle;
 	}
-	public void setEducation_title(String education_title) {
-		this.education_title = education_title;
+	public void setEducationTitle(String educationTitle) {
+		this.educationTitle = educationTitle;
 	}
-	public String getEducation_degree() {
-		return education_degree;
+	public String getEducationDegree() {
+		return educationDegree;
 	}
-	public void setEducation_degree(String education_degree) {
-		this.education_degree = education_degree;
+	public void setEducationDegree(String educationDegree) {
+		this.educationDegree = educationDegree;
 	}
-	public String getEducation_year() {
-		return education_year;
+	public String getEducationYear() {
+		return educationYear;
 	}
-	public void setEducation_year(String education_year) {
-		this.education_year = education_year;
+	public void setEducationYear(String educationYear) {
+		this.educationYear = educationYear;
 	}
 	public String getRole() {
 		return role;
@@ -126,6 +152,25 @@ public class Seeker {
 	public void setResearch(String research) {
 		this.research = research;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getResumeUrl() {
+		return resumeUrl;
+	}
+	public void setResumeUrl(String resumeUrl) {
+		this.resumeUrl = resumeUrl;
+	}
+	public String getProfileUrl() {
+		return profileUrl;
+	}
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
+	}
+	
 	
 	
 	

@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,7 @@ public class RecruiterController {
 	RecruiterService recruiterService;
 	
 	
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<Recruiter> recruiterAdd(@RequestBody Recruiter recruiter)
 	{
 		Recruiter saveRecruiter= recruiterService.addRecruiter(recruiter);
@@ -34,10 +33,10 @@ public class RecruiterController {
 			
 	}
 	
-	@DeleteMapping("/delrecruiter/{uuid}")
-	public ResponseEntity<?> deleteRecruiter(@PathVariable UUID uuid)
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> deleteRecruiter(@PathVariable Integer id)
 	{
-	    String msg=recruiterService.deleteRecruiter(uuid);
+	    String msg=recruiterService.deleteRecruiter(id);
 	    return new ResponseEntity<String>(msg, HttpStatus.OK);
 				
 	}

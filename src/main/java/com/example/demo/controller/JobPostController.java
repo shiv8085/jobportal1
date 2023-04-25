@@ -25,7 +25,7 @@ public class JobPostController {
 	@Autowired
 	private JobPostService jobPostService;
 	
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<JobPost> jobPostAdd(@RequestBody JobPost jobPost)
 	{
 	  JobPost jobPost1=jobPostService.jobPostAdd(jobPost);
@@ -33,24 +33,24 @@ public class JobPostController {
 		
 	}
 	
-	@DeleteMapping("/jobpostdel/{uuid}")
-	public ResponseEntity<?> jobpostDel(@PathVariable UUID uuid)
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> jobpostDel(@PathVariable Integer id)
 	{
-		String msg= jobPostService.jobPostDeleteById(uuid);
+		String msg= jobPostService.jobPostDeleteById(id);
 		return new ResponseEntity<String>(msg,HttpStatus.OK);
 	}
 	
-	@GetMapping("/show")
+	@GetMapping("/")
 	public ResponseEntity<List<JobPost>> showJobPost()
 	{
 	    List<JobPost> list=jobPostService.showJobPost(); 
 	    return new ResponseEntity<List<JobPost>>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{uuid}")
-	public ResponseEntity<?> getJobPost(@PathVariable UUID uuid)
+	@GetMapping("/{id}")
+	public ResponseEntity<JobPost> getJobPost(@PathVariable Integer id)
 	{
-		Optional<JobPost> jobPost=jobPostService.JobPostGetById(uuid);
+		JobPost jobPost=jobPostService.JobPostGetById(id);
 		return new ResponseEntity<>(jobPost,HttpStatus.OK);
 	}	
 
