@@ -24,14 +24,16 @@ public class JobPostServiceImpl implements JobPostService {
 	JobPostDao jobPostServiceDao;
 	
 	@Override
-	public JobPost jobPostAdd(JobPost jobPost) {
+	public JobPost jobPostAdd(Integer id,JobPost jobPost) {
 		try {
 			LocalDate localDate= LocalDate.now();
-		if(jobPost.getTitle().isEmpty())
+			jobPost.setRecruiter_id(id);     // for recruter_id   jobpost/7
+			
+		if(jobPost.getJob_title().isEmpty())
 		{
 			throw new BusinessException("pls enter title");
 		}
-		jobPost.setCreatedAt(localDate);
+		jobPost.setCreated_at(localDate);
 		return jobPostServiceDao.save(jobPost);
 		}catch(IllegalArgumentException e)
 		{

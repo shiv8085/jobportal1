@@ -10,7 +10,7 @@ import com.example.demo.entity.Seeker;
 public interface JobPostService {
 	
 	 //add JobPost 
-	public JobPost jobPostAdd(JobPost jobpost);
+	public JobPost jobPostAdd(Integer id ,JobPost jobpost);
 	
 	//Delete JobPost 
 	public String jobPostDeleteById(Integer id);

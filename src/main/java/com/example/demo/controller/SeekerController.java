@@ -22,13 +22,13 @@ import com.example.demo.entity.Seeker;
 import com.example.demo.service.SeekerService;
 
 @RestController
-@RequestMapping("seeker")
-public class SeekerController {
+@RequestMapping("/seeker")
+ public class SeekerController {
 
 	@Autowired
 	SeekerService seekerService;
 
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<Seeker> addSeeker(@RequestBody Seeker seeker) {
 		try {
 			Seeker seekerSaved = seekerService.seekerAdd(seeker);
@@ -44,7 +44,7 @@ public class SeekerController {
 	}
 	
 
-	@GetMapping("/getbyid/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Seeker> getSeeker(@PathVariable Integer id) {
 		try {
 			Seeker retrievedSeeker = seekerService.seekerGetById(id);
@@ -61,7 +61,7 @@ public class SeekerController {
 	}
 	
 
-	@GetMapping("/list")
+	@GetMapping("/")
 	public ResponseEntity<List<Seeker>> showSeeker() {
 	
 			List<Seeker> list = seekerService.showSeeker();

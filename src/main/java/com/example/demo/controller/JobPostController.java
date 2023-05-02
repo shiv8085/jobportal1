@@ -25,10 +25,10 @@ public class JobPostController {
 	@Autowired
 	private JobPostService jobPostService;
 	
-	@PostMapping("/")
-	public ResponseEntity<JobPost> jobPostAdd(@RequestBody JobPost jobPost)
+	@PostMapping("/{id}")
+	public ResponseEntity<JobPost> jobPostAdd(@PathVariable Integer id, @RequestBody JobPost jobPost)
 	{
-	  JobPost jobPost1=jobPostService.jobPostAdd(jobPost);
+	  JobPost jobPost1=jobPostService.jobPostAdd(id,jobPost); 
 	  return new ResponseEntity<JobPost>(jobPost1,HttpStatus.CREATED);
 		
 	}

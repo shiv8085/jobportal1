@@ -1,15 +1,15 @@
-package com.example.demo.dto;
+package com.example.demo.entitydto;
 
-public class Credential {
+public class Login {
 	
 	private String userName;
 	private String password;
 	
-	public Credential() {
+	public Login() {
 		
 	}
 	
-	public Credential(String userName, String password) {
+	public Login(String userName, String password) {
 		this.userName = userName;
 		this.password = password;
 	}

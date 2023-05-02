@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.dto.Credential;
+
 import com.example.demo.entity.Seeker;
+import com.example.demo.entitydto.Login;
 import com.example.demo.service.SeekerService;
 
 @RestController 
@@ -21,7 +22,7 @@ public class LogInController {
 	
 	@CrossOrigin
 	@PostMapping(path = "/login",  consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> loginSeeker(@RequestBody Credential credential)
+	public ResponseEntity<String> loginSeeker(@RequestBody Login credential)
 	{
 		String emailId=credential.getUserName();
 		String password= credential.getPassword();
